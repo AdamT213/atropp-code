@@ -1,0 +1,33 @@
+{
+  "name": "personal_blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Adam Tropp",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.550.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongodb": "^3.3.2",
+    "multer": "^1.4.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npm-run-all -p -r start-server start-svelte",
+    "start-server": "nodemon server.js",
+    "start-svelte": "cd client && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "analyze": "cd client && npm run-script analyze"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
