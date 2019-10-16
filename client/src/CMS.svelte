@@ -41,6 +41,7 @@
     const post = async () => {
       var postBody = document.querySelector('#editor')
       postBody.value = JSON.stringify(editor.getContents())
+      if (slug.startsWith('/')) slug = slug.slice(1)
       const data = new FormData()
       data.append('title', title)
       data.append('postBody', postBody.value)

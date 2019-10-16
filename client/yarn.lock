@@ -344,6 +344,16 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+crayon-svelte@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/crayon-svelte/-/crayon-svelte-1.0.10.tgz#9faba3a64aa2f4e9e7ea562ad6bf4f0d48181dde"
+  integrity sha512-3efkP6hUrvn3KgSMe7leZrzXrql4H5gSURBbhOHei0RNINY5HpZpJtgZioajoUhkG5HYKgfgYCdEl5Zjo0vf0A==
+
+crayon@^4.1.6:
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/crayon/-/crayon-4.1.6.tgz#e3d2d22e992da5bba6463c7a64990cdc62ffdc50"
+  integrity sha512-N77iS9Lq93tcbJ34HolAeXHsSTOc5Wzj2MvKJ1nBPdUS/GC5egjufcG/inndo1i/Dd2x9OGtXzYivCx67e+cvw==
+
 cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -1437,6 +1447,11 @@ process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+
+quill-delta-to-html@^0.10.13:
+  version "0.10.13"
+  resolved "https://registry.yarnpkg.com/quill-delta-to-html/-/quill-delta-to-html-0.10.13.tgz#b5991036e042bbfd230a9b42c14f57c4dd1c5520"
+  integrity sha512-6BBiyg5PjPyUd0PaOS5uQp7T9RZMLxRjCyBpHXwdc03367luITUW3Xd680z7ta00njLWBC+FYISuZycnSkuvmQ==
 
 quill-delta@^3.6.2:
   version "3.6.3"

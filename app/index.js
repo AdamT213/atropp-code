@@ -86,10 +86,35 @@ app.use(
       });
       const upload = await uploadFile((Path.resolve(__dirname, '../tmp/postBody.json')), postId.toString());
       await posts.updateOne({_id: postId}, { $set: {postBodyURL: 
-      `https://adam-tropp-blog-posts.s3.amazonaws.com/${postId}`}})
+      `${process.env.S3_BUCKET_URI}/${postId}`}})
       res.sendStatus(200);
     } catch (e) {
       console.error(e);
       res.sendStatus(500);
     }
   });
+
+  app.get('/postDetails?', async (req, res) => { 
+    try { 
+      const {slug} = req.query;
+      await connection;
+      const db = client.db(process.env.DBNAME);
+      const posts = db.collection('posts');
+      const post  = await posts.findOne({slug})
+      return res.status(200).send(post)
+    } catch(e) {
+      return res.sendStatus(500)
+    }
+  })
+
+  app.get('/posts?', async (req, res) => { 
+    try {
+      await connection;
+      const db = client.db(process.env.DBNAME);
+      const posts = db.collection('posts');
+      const details  = await posts.find({}).toArray()
+      return res.status(200).send(details)
+    } catch(e) {
+      return res.sendStatus(500)
+    }
+  })
