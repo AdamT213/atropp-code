@@ -1,12 +1,14 @@
 <script>
   import { onMount } from 'svelte'
   import Quill from 'quill'
+  import Dropzone from 'svelte-dropzone'
   import { instance } from './utils'
 
   let editor,
     title,
     meta,
     slug,
+    image,
     errors = {}
 
   onMount(() => {
@@ -78,6 +80,10 @@
     }
     post()
   }
+
+  const addedfile = file => console.log(file)
+  const drop = event => console.log(event.target)
+  const init = () => console.log('dropzone init ! 😍')
 </script>
 
 <style>
@@ -88,6 +94,13 @@
   .card .container {
     height: 100%;
     overflow-y: auto;
+  }
+  #feat-img {
+    height: 150px;
+    border: 3px dashed #f2f4f7;
+    margin-bottom: 1rem;
+    color: #f2f4f7;
+    text-align: center;
   }
   .sticky-top {
     margin-top: 20%;
@@ -132,6 +145,19 @@
         </div>
         <div class="col-6">
           <div class="sticky-top">
+            <div id="feat-img">
+              <i class="fas fa-cloud-upload-alt" />
+              <p>Feature Image</p>
+              <Dropzone
+                dropzoneClass="dropzoneClass"
+                hooveringClass="hooveringClass"
+                id="id"
+                dropzoneEvents={{ addedfile, drop, init }}
+                options={{ clickable: true, acceptedFiles: 'image/**', maxFilesize: 256, init }} />
+            </div>
+            {#if errors.image}
+              <p class="form-error">{errors.image}</p>
+            {/if}
             <label htmlFor="meta description" placeholder="SEO Description">
               Meta Description
             </label>
