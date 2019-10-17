@@ -445,11 +445,6 @@ detect-libc@^1.0.2:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-dropzone@^5.5.1:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
-  integrity sha512-3VduRWLxx9hbVr42QieQN25mx/I61/mRdUSuxAmDGdDqZIN8qtP7tcKMa3KfpJjuGjOJGYYUzzeq6eGDnkzesA==
-
 ejs@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.7.1.tgz#5b5ab57f718b79d4aca9254457afecd36fa80228"
@@ -1996,13 +1991,6 @@ supports-color@^6.1.0:
   integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
   dependencies:
     has-flag "^3.0.0"
-
-svelte-dropzone@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/svelte-dropzone/-/svelte-dropzone-1.0.5.tgz#fc0ef9c74992bd0668f2852a0142d3913459a6ca"
-  integrity sha512-04XVYYYVTBoqdtX26eupIVhbCR6sSHIrQlzu7ZGWHIzKlsK1zj/oDRIQrlsLQZnKgSY7pW2ed7W0ESF+z12rOQ==
-  dependencies:
-    dropzone "^5.5.1"
 
 svelte@^3.0.0:
   version "3.12.1"

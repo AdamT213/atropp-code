@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import Quill from 'quill'
-  import Dropzone from 'svelte-dropzone'
   import { instance } from './utils'
 
   let editor,
@@ -45,11 +44,12 @@
       postBody.value = JSON.stringify(editor.getContents())
       if (slug.startsWith('/')) slug = slug.slice(1)
       const data = new FormData()
+      data.append('image', image)
       data.append('title', title)
       data.append('postBody', postBody.value)
       data.append('meta', meta)
       data.append('slug', slug)
-      if (!title || !slug || !meta) {
+      if (!title || !slug || !meta || !image) {
         if (!title) {
           errors = { ...errors, title: true }
         }
@@ -58,6 +58,9 @@
         }
         if (!slug) {
           errors = { ...errors, slug: true }
+        }
+        if (!image) {
+          errors = { ...errors, image: true }
         }
       } else {
         const res = await instance({
@@ -81,9 +84,13 @@
     post()
   }
 
-  const addedfile = file => console.log(file)
-  const drop = event => console.log(event.target)
-  const init = () => console.log('dropzone init ! 😍')
+  function PreviewImage() {
+    var oFReader = new FileReader()
+    oFReader.onload = function(oFREvent) {
+      document.getElementById('uploadPreview').src = oFREvent.target.result
+    }
+    oFReader.readAsDataURL(document.getElementById('uploadImage').files[0])
+  }
 </script>
 
 <style>
@@ -146,17 +153,33 @@
         <div class="col-6">
           <div class="sticky-top">
             <div id="feat-img">
-              <i class="fas fa-cloud-upload-alt" />
-              <p>Feature Image</p>
-              <Dropzone
-                dropzoneClass="dropzoneClass"
-                hooveringClass="hooveringClass"
-                id="id"
-                dropzoneEvents={{ addedfile, drop, init }}
-                options={{ clickable: true, acceptedFiles: 'image/**', maxFilesize: 256, init }} />
+              {#if image}
+                <img
+                  alt="preview"
+                  src="#"
+                  id="uploadPreview"
+                  style="width: 100px; height: 100px;" />
+                <button on:click={() => (image = '')}>Discard</button>
+              {:else}
+                <i class="fas fa-cloud-upload-alt" />
+                <p>Feature Image</p>
+                <input
+                  id="uploadImage"
+                  type="file"
+                  style="opacity: 0.0; position: absolute; top: 0; left: 0;
+                  bottom: 0; right: 0; width: 100%; height:100%;"
+                  on:change={e => {
+                    errors.image = false
+                    PreviewImage()
+                    image = e.target.value
+                  }} />
+              {/if}
             </div>
             {#if errors.image}
-              <p class="form-error">{errors.image}</p>
+              <p class="form-error">
+                Please include a feature image (png, jpeg/jpg) to accompany your
+                post
+              </p>
             {/if}
             <label htmlFor="meta description" placeholder="SEO Description">
               Meta Description
