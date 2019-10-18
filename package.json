@@ -20,9 +20,10 @@
     "prettier": "^1.18.2"
   },
   "scripts": {
-    "start": "node server.js",
+    "build": "cd client && npm run build",
+    "start": "node index.js",
     "dev": "npm-run-all -p -r start-server start-svelte",
-    "start-server": "nodemon server.js",
+    "start-server": "nodemon index.js",
     "start-svelte": "cd client && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze": "cd client && npm run-script analyze"

@@ -21,33 +21,35 @@ const url =
 
 const client = new MongoClient(url, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  // useUnifiedTopology: true
 });
 const connection = client.connect();
 exports.client = client;
 exports.connection = connection;
 
 const app = Express();
-
+const router = Express.Router()
 app.use(
     Cors({
       credentials: true,
       origin:
         process.env.NODE_ENV === 'production'
-          ? 'https://www.admin-forestfounders.org'
+          ? 'https://atroppcode.adt6261.now.sh'
           : 'http://localhost:5000'
     })
   );
 
+  app.use('/api', router)
+
   if (ENV === 'production') {
     // Serve static files from the React app
-    app.use(express.static(path.resolve(__dirname, '../client/build')));
+    app.use(Express.static(Path.resolve(__dirname, '../client/public')));
   
     // The "catchall" handler: for any request that doesn't
-    // match one above, send back React's index.html file.
+    // match one above, send back svelte bundle.
     app.get('*', (req, res) => {
       res.sendFile(
-        path.join(path.join(__dirname, '../client/build', 'index.html'))
+        Path.join(__dirname, '../client/public', 'index.html')
       );
     });
   }
@@ -67,7 +69,7 @@ app.use(
     uploadFile, uploadFileAtPath
   } = require('./AWS/requests');
 
-  app.post('/savePost', upload, async (req, res, next) => {
+router.post('/savePost', upload, async (req, res, next) => {
     try {
       const { slug, title, meta, postBody } = req.body;
       const image = req.files[0]
@@ -99,7 +101,7 @@ app.use(
     }
   });
 
-  app.get('/postDetails?', async (req, res) => { 
+  router.get('/postDetails?', async (req, res) => { 
     try { 
       const {slug} = req.query;
       await connection;
@@ -112,7 +114,7 @@ app.use(
     }
   })
 
-  app.get('/posts?', async (req, res) => { 
+  router.get('/posts?', async (req, res) => { 
     try {
       await connection;
       const db = client.db(process.env.DBNAME);
@@ -124,7 +126,7 @@ app.use(
     }
   })
 
-  app.get('/resume', async (req, res) => { 
+  router.get('/resume', async (req, res) => { 
     // res.setHeader('Content-disposition', 'attachment; filename=data.csv');
     res.download('tmp/resume.docx', 'Adam Tropp Resume.csv')
   })

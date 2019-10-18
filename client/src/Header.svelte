@@ -17,4 +17,4 @@
 <a target="blank" href="https://github.com/adamt213">Github</a>
 <a target="blank" href="https://twitter.com/glsshsthrwngstn">Twitter</a>
 <a target="blank" href="https://www.linkedin.com/in/adamtropp13/">Linkedin</a>
-<a href="" on:click={() => window.open('/resume')}>C.V.</a>
+<a href="" on:click={() => window.open('/api/resume')}>C.V.</a>

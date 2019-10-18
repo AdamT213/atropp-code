@@ -1,0 +1,37 @@
+{
+  "name": "AtroppCode",
+  "version": 2,
+  "public": true,
+  "env": {
+"aws_key":"@aws_key",
+"aws_secret":"@aws_secret",
+"DBNAME":"personal-blog",
+"SESSION_SECRET":"@session_secret",
+"MONGODB_URI":"@my-mongodb-uri",
+"S3_BUCKET_URI":"@s3_bucket_uri"
+  },
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@now/static-build"
+    },
+    {
+      "src": "index.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "app/index.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/app/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    }
+  ]
+}

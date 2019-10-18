@@ -3,7 +3,7 @@ const Fs = require('fs')
 
 require('dotenv').config()
 
-const s3 = new AWS.S3({accessKeyId: process.env.aws_access_key_id, secretAccessKey: process.env.aws_secret_access_key});
+const s3 = new AWS.S3({accessKeyId: process.env.aws_key, secretAccessKey: process.env.aws_secret});
 
 exports.uploadFileAtPath = async (path, id) => {
     const stream = Fs.createReadStream(path)
