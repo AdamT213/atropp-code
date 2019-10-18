@@ -64,16 +64,18 @@ app.use(
   }).any();
   
   const {
-    uploadFile
+    uploadFile, uploadFileAtPath
   } = require('./AWS/requests');
 
   app.post('/savePost', upload, async (req, res, next) => {
     try {
       const { slug, title, meta, postBody } = req.body;
+      const image = req.files[0]
       const newPost = {
         slug,
         title,
         meta,
+        imageUrl: 'tbd',
         postBodyURL: 'tbd'
       };
       await connection;
@@ -84,9 +86,12 @@ app.use(
       await Fs.writeFileSync('tmp/postBody.json', postBody, err => {
         if (err) throw err;
       });
-      const upload = await uploadFile((Path.resolve(__dirname, '../tmp/postBody.json')), postId.toString());
-      await posts.updateOne({_id: postId}, { $set: {postBodyURL: 
-      `${process.env.S3_BUCKET_URI}/${postId}`}})
+      const bodyUpload = await uploadFileAtPath((Path.resolve(__dirname, '../tmp/postBody.json')), postId.toString());
+      const imageUpload = await uploadFile(image.buffer, postId.toString())
+      await posts.updateOne({_id: postId}, { $set: 
+        {imageUrl: `${process.env.S3_BUCKET_URI}/${postId}-img`, postBodyURL: 
+      `${process.env.S3_BUCKET_URI}/${postId}`
+    }})
       res.sendStatus(200);
     } catch (e) {
       console.error(e);
@@ -117,4 +122,9 @@ app.use(
     } catch(e) {
       return res.sendStatus(500)
     }
+  })
+
+  app.get('/resume', async (req, res) => { 
+    // res.setHeader('Content-disposition', 'attachment; filename=data.csv');
+    res.download('tmp/resume.docx', 'Adam Tropp Resume.csv')
   })

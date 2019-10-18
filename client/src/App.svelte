@@ -1,15 +1,20 @@
 <script>
   import crayon from 'crayon'
   import svelte from 'crayon-svelte'
-  import CMS from './CMS.svelte'
+  import About from './About.svelte'
   import Blog from './Blog.svelte'
   import BlogPost from './BlogPost.svelte'
+  import CMS from './CMS.svelte'
 
   const client = crayon.create()
   client.use(svelte.router())
 
   client.path('/', (req, res) => {
     res.redirect('/blog')
+  })
+
+  client.path('/about', (req, res) => {
+    res.mount(About)
   })
 
   client.path('/content', (req, res) => {

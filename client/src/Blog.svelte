@@ -1,9 +1,10 @@
 <script>
   import { onMount } from 'svelte'
-  // import { client } from './App.svelte'
   import { instance } from './utils'
+  import Header from './Header.svelte'
   let posts
   export let client
+  let w
 
   onMount(() => {
     const getPosts = async () => {
@@ -18,50 +19,89 @@
 </script>
 
 <style>
-  .card {
+  div.card {
     padding: 1em;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
   div.row {
-    margin-bottom: 1rem;
+    height: 100%;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: center;
   }
-  h1 {
-    text-align: center;
+  .col-10 div.row {
+    height: 25vh;
+    margin-bottom: 1rem;
+    margin-right: initial;
+    margin-left: initial;
+  }
+  img {
+    width: 80%;
+    height: 80%;
+  }
+  @media screen and (max-width: 576px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
   }
 </style>
 
-<div class="container">
-  <h1 id="center">Contents</h1>
-  {#if posts && posts.length}
-    {#each posts as post}
-      <!-- <img src={} -->
-      <div class="row">
-        <div
-          id={post.slug}
-          class="card"
-          on:click={event => client.navigate('/blog/' + event.target.id)}>
+<div bind:clientWidth={w} class="container">
+  <div class="row">
+    <div class="col-10">
+      <Header />
+      <h1>Canon</h1>
+      <img
+        id="hero"
+        alt="spacey hero image"
+        src="https://adam-tropp-blog-posts.s3.amazonaws.com/Details+about+Winter+Solstice+Blue+Cosmic+Sun+Moon+Stars+Fabric+Celestial+Metallic+Gold+BTHY.jpeg" />
+      {#if posts && posts.length}
+        {#each posts as post}
           <div class="row">
-            <div class="col-4">
-              <img alt="hero image" id={post.slug} src={post.imageUrl} />
-            </div>
-            <div class="col-8">
-              <h2
-                className="blogpost-title"
-                id={post.slug}
-                on:click={event => client.navigate('/blog/' + event.target.id)}>
-                {post.title}
-              </h2>
-              <p id={post.slug}>
-                So! You’re looking for ways to reduce your carbon footprint.
-                Good for you! The first step to living a clean energy lifestyle
-                is by actively looking for effective ways to do so. Luckily for
-                you, our company offers an easy (and affordable) way you can
-                start!
-              </p>
+            <div
+              id={post.slug}
+              class="card"
+              on:click={event => client.navigate('/blog/' + event.target.id)}>
+              <div class="row">
+                {#if w >= 375}
+                  <div class="col-4">
+                    <img alt="hero image" id={post.slug} src={post.imageUrl} />
+                  </div>
+                  <div class="col-8">
+                    <h2
+                      className="blogpost-title"
+                      id={post.slug}
+                      on:click={event => client.navigate('/blog/' + event.target.id)}>
+                      {post.title}
+                    </h2>
+                    <p id={post.slug}>{post.meta}...</p>
+                  </div>
+                {:else}
+                  <div class="col-12">
+                    <h2
+                      className="blogpost-title"
+                      id={post.slug}
+                      on:click={event => client.navigate('/blog/' + event.target.id)}>
+                      {post.title}
+                    </h2>
+                    <p id={post.slug}>{post.meta}...</p>
+                  </div>
+                {/if}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    {/each}
-  {/if}
+        {/each}
+      {/if}
+    </div>
+  </div>
 </div>

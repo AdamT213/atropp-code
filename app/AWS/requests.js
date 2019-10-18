@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const s3 = new AWS.S3({accessKeyId: process.env.aws_access_key_id, secretAccessKey: process.env.aws_secret_access_key});
 
-exports.uploadFile = async (path, id) => {
+exports.uploadFileAtPath = async (path, id) => {
     const stream = Fs.createReadStream(path)
     var params = {
         ACL: "public-read", 
@@ -18,4 +18,19 @@ exports.uploadFile = async (path, id) => {
          return data;
        })
 }
+
+exports.uploadFile = async (buffer, id) => {
+  var params = {
+      ACL: "public-read", 
+      Body: buffer, 
+      Bucket: "adam-tropp-blog-posts", 
+      Key: id + "-img"
+     };
+     return s3.putObject(params, function(err, data) {
+       if (err) throw err
+       return data;
+     })
+}
+
+
 

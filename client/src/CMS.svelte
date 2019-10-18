@@ -171,7 +171,7 @@
                   on:change={e => {
                     errors.image = false
                     PreviewImage()
-                    image = e.target.value
+                    image = e.target.files[0]
                   }} />
               {/if}
             </div>
