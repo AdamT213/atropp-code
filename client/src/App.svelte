@@ -5,9 +5,18 @@
   import Blog from './Blog.svelte'
   import BlogPost from './BlogPost.svelte'
   import CMS from './CMS.svelte'
+  import SignIn from './SignIn.svelte'
+  import { instance } from './utils'
 
   const client = crayon.create()
   client.use(svelte.router())
+
+  const loggedInUser = async (req, res) => {
+    const { data } = await instance.get('/loggedInUser', {
+      withCredentials: true,
+    })
+    if (data) req.user = data
+  }
 
   client.path('/', (req, res) => {
     res.redirect('/blog')
@@ -17,8 +26,9 @@
     res.mount(About)
   })
 
-  client.path('/content', (req, res) => {
-    res.mount(CMS)
+  client.path('/content', loggedInUser, (req, res) => {
+    if (req.user) res.mount(CMS)
+    else res.redirect('/signin')
   })
 
   client.path('/blog', (req, res) => {
@@ -42,6 +52,16 @@
         },
       })
     )
+  })
+
+  client.path('/signin', loggedInUser, async (req, res) => {
+    if (req.user) {
+      res.redirect('/content')
+    } else
+      await res.mount(SignIn, {
+        target: document.body,
+        client,
+      })
   })
 
   client.load()

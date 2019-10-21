@@ -27,7 +27,19 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/app/$1"
+      "dest": "/index.js"
+    },
+    {
+      "src": "/about",
+      "dest": "/client/index.html"
+    },
+    {
+      "src": "/content",
+      "dest": "/client/index.html"
+    },
+    {
+      "src": "/signin",
+      "dest": "/client/index.html"
     },
     {
       "src": "/(.*)",

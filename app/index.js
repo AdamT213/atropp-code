@@ -39,7 +39,24 @@ app.use(
     })
   );
 
+  app.use(
+    Session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: false,
+        secure: process.env.NODE_ENV === "production"
+      },
+      store: new MongoStore({ clientPromise: connection })
+    })
+  );
+  
+
   app.use('/api', router)
+
+  const {login} = require('./Mongo/requests')
 
   if (ENV === 'production') {
     // Serve static files from the React app
@@ -68,6 +85,30 @@ app.use(
   const {
     uploadFile, uploadFileAtPath
   } = require('./AWS/requests');
+
+  router.get('/loggedInUser', async (req, res) => {
+    try {
+      const { user } = req.session;
+      res.json(user);
+    } catch (e) {
+      res.sendStatus(500);
+    }
+  });
+
+router.post( '/loginUser',
+BodyParser.json(),
+BodyParser.urlencoded({ extended: true }),
+async (req, res) => {
+  try {
+    const data = await login(req.body.email, req.body.password);
+    req.session.user = data;
+    req.session.save(err => console.log(err));
+    res.status(200).send(data);
+  } catch (e) {
+    console.error(e)
+    res.sendStatus(500);
+  }
+})
 
 router.post('/savePost', upload, async (req, res, next) => {
     try {
@@ -122,6 +163,7 @@ router.post('/savePost', upload, async (req, res, next) => {
       const details  = await posts.find({}).toArray()
       return res.status(200).send(details)
     } catch(e) {
+      console.error(e)
       return res.sendStatus(500)
     }
   })
