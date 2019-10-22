@@ -168,8 +168,3 @@ router.post('/savePost', upload, async (req, res) => {
       return res.sendStatus(500)
     }
   })
-
-  router.get('/resume', async (req, res) => { 
-    // res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-    res.download('tmp/resume.docx', 'Adam Tropp Resume.csv')
-  })

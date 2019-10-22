@@ -352,10 +352,20 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+crayon-animate@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/crayon-animate/-/crayon-animate-2.0.5.tgz#f8edb67ede23bd3be953861b467b94bf59a218fd"
+  integrity sha512-qjZ6ISTIej+7wltSyyJ9w/wLR4VSizG1l8do6UP+SERVyxJWlla/nK3TFbySURVUCVlRPmeCGaju37NFInYITA==
+
 crayon-svelte@^1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/crayon-svelte/-/crayon-svelte-1.0.10.tgz#9faba3a64aa2f4e9e7ea562ad6bf4f0d48181dde"
   integrity sha512-3efkP6hUrvn3KgSMe7leZrzXrql4H5gSURBbhOHei0RNINY5HpZpJtgZioajoUhkG5HYKgfgYCdEl5Zjo0vf0A==
+
+crayon-transition@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/crayon-transition/-/crayon-transition-1.0.9.tgz#d42f132192001dc9f4a69a8c4a8ecb0990c9ade8"
+  integrity sha512-N9LvG4nqHFNSoEWS2Z9lbsEntPBZ2LdM7LZZth9rHL9CqdhfB5+SujiG8Wt332gCNMO35HsgIKtRUgy69ss6Yg==
 
 crayon@^4.1.6:
   version "4.1.6"

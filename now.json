@@ -34,6 +34,10 @@
       "dest": "/client/index.html"
     },
     {
+      "src": "/blog/*",
+      "dest": "/client/index.html"
+    },
+    {
       "src": "/content",
       "dest": "/client/index.html"
     },

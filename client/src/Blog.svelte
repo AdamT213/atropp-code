@@ -39,6 +39,9 @@
     margin-right: initial;
     margin-left: initial;
   }
+  .card .row {
+    align-items: center;
+  }
   img {
     width: 80%;
     height: 80%;
@@ -73,7 +76,7 @@
               class="card"
               on:click={event => client.navigate('/blog/' + event.target.id)}>
               <div class="row">
-                {#if w >= 375}
+                {#if w >= 700}
                   <div class="col-4">
                     <img alt="hero image" id={post.slug} src={post.imageUrl} />
                   </div>

@@ -15,7 +15,7 @@ body {
 }
 
 a {
-	color: #32a4a8
+	color: #32a4a8;
 	text-decoration: none;
 }
 
@@ -66,4 +66,10 @@ img#hero {
 	height: 60vh;
 	width:100%;
 	margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 768px) { 
+	img#hero { 
+		height: 30vh;
+	}
 }

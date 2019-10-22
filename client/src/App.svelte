@@ -1,6 +1,8 @@
 <script>
   import crayon from 'crayon'
   import svelte from 'crayon-svelte'
+  import animate from 'crayon-animate'
+  import transition from 'crayon-transition'
   import About from './About.svelte'
   import Blog from './Blog.svelte'
   import BlogPost from './BlogPost.svelte'
@@ -11,6 +13,17 @@
   const client = crayon.create()
   client.use(svelte.router())
 
+  client.use(transition.loader())
+  client.use(
+    animate.routes([
+      {
+        from: '/blog',
+        to: '/**',
+        name: 'transition.pushUp',
+        duration: 1000,
+      },
+    ])
+  )
   const loggedInUser = async (req, res) => {
     const { data } = await instance.get('/loggedInUser', {
       withCredentials: true,
@@ -32,26 +45,18 @@
   })
 
   client.path('/blog', (req, res) => {
-    res.mount(
-      new Blog({
-        target: document.body,
-        props: {
-          client,
-        },
-      })
-    )
+    res.mount(Blog, {
+      target: document.body,
+      client,
+    })
   })
 
   client.path('/blog/:slug', async (req, res) => {
     let { slug } = req.params
-    await res.mount(
-      new BlogPost({
-        target: document.body,
-        props: {
-          slug,
-        },
-      })
-    )
+    await res.mount(BlogPost, {
+      target: document.body,
+      slug,
+    })
   })
 
   client.path('/signin', loggedInUser, async (req, res) => {
