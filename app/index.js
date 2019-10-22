@@ -1,6 +1,7 @@
 const Express = require('express')
 const BodyParser = require('body-parser')
 const Fs = require('fs')
+const Os = require('os');
 const Path = require('path');
 const Session = require('express-session')
 const Cors = require('cors');
@@ -59,7 +60,7 @@ app.use(
   const {login} = require('./Mongo/requests')
 
   if (ENV === 'production') {
-    // Serve static files from the React app
+    // Serve static files from the Svelte app
     app.use(Express.static(Path.resolve(__dirname, '../client/public')));
   
     // The "catchall" handler: for any request that doesn't
@@ -74,17 +75,6 @@ app.use(
   exports.up = () => {
     return app.listen(port, () => console.log(`listening on port ${port}!`));
   };
-
-  const storage = Multer.MemoryStorage;
-
-  const upload = Multer({
-    storage,
-    limits: { fieldSize: 25 * 1024 * 1024 }
-  }).any();
-  
-  const {
-    uploadFile, uploadFileAtPath
-  } = require('./AWS/requests');
 
   router.get('/loggedInUser', async (req, res) => {
     try {
@@ -110,7 +100,18 @@ async (req, res) => {
   }
 })
 
-router.post('/savePost', upload, async (req, res, next) => {
+const storage = Multer.MemoryStorage;
+
+  const upload = Multer({
+    storage,
+    limits: { fieldSize: 25 * 1024 * 1024 }
+  }).any();
+  
+  const {
+    uploadFile, uploadFileAtPath
+  } = require('./AWS/requests');
+
+router.post('/savePost', upload, async (req, res) => {
     try {
       const { slug, title, meta, postBody } = req.body;
       const image = req.files[0]
@@ -126,11 +127,11 @@ router.post('/savePost', upload, async (req, res, next) => {
       const posts = db.collection('posts');
       const post = await posts.insertOne(newPost);
       const postId = post.insertedId;
-      await Fs.writeFileSync('tmp/postBody.json', postBody, err => {
+      await Fs.writeFileSync(Path.join(Os.tmpdir(), 'postBody.json'), postBody, err => {
         if (err) throw err;
       });
-      const bodyUpload = await uploadFileAtPath((Path.resolve(__dirname, '../tmp/postBody.json')), postId.toString());
-      const imageUpload = await uploadFile(image.buffer, postId.toString())
+      await uploadFileAtPath(Path.join(Os.tmpdir(), 'postBody.json'), postId.toString());
+      await uploadFile(image.buffer, postId.toString())
       await posts.updateOne({_id: postId}, { $set: 
         {imageUrl: `${process.env.S3_BUCKET_URI}/${postId}-img`, postBodyURL: 
       `${process.env.S3_BUCKET_URI}/${postId}`
