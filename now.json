@@ -34,7 +34,7 @@
       "dest": "/client/index.html"
     },
     {
-      "src": "/blog/*",
+      "src": "/blog(/*)([^/]*)",
       "dest": "/client/index.html"
     },
     {
@@ -47,7 +47,8 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/client/$1"
+      "dest": "/client/$1",
+      "headers": { "cache-control": "public, max-age=0, must-revalidate" }
     }
   ]
 }

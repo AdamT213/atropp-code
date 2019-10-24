@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { instance } from './utils'
+  import { displayDate, instance } from './utils'
   import Header from './Header.svelte'
   let posts
   export let client
@@ -87,6 +87,7 @@
                       on:click={event => client.navigate('/blog/' + event.target.id)}>
                       {post.title}
                     </h2>
+                    <p id={post.slug}>{displayDate(new Date(post.created))}</p>
                     <p id={post.slug}>{post.meta}...</p>
                   </div>
                 {:else}
@@ -97,6 +98,7 @@
                       on:click={event => client.navigate('/blog/' + event.target.id)}>
                       {post.title}
                     </h2>
+                    <p id={post.slug}>{displayDate(new Date(post.created))}</p>
                     <p id={post.slug}>{post.meta}...</p>
                   </div>
                 {/if}

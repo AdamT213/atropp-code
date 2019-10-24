@@ -1,10 +1,12 @@
 import axios from 'axios'
 export const instance = axios.create({
-    baseURL: 'https://atroppcode.adt6261.now.sh/api',
+    baseURL: 'https://atropp.dev/api',
     headers: {
-      'Access-Control-Allow-Origin': 'https://atroppcode.adt6261.now.sh'
+      'Access-Control-Allow-Origin': 'https://atropp.dev'
     }
   });
-  // https://atroppcode.adt6261.now.sh
+  // https://atropp.dev
   // http://localhost:3001
   // http://localhost:5000
+
+  export const displayDate = jsDateObj => `${jsDateObj.getMonth() + 1}.${jsDateObj.getDate()}.${jsDateObj.getFullYear()}`

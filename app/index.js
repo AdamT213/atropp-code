@@ -35,7 +35,7 @@ app.use(
       credentials: true,
       origin:
         process.env.NODE_ENV === 'production'
-          ? 'https://atroppcode.adt6261.now.sh'
+          ? 'https://atropp.dev'
           : 'http://localhost:5000'
     })
   );
@@ -116,6 +116,7 @@ router.post('/savePost', upload, async (req, res) => {
       const { slug, title, meta, postBody } = req.body;
       const image = req.files[0]
       const newPost = {
+        created: new Date(),
         slug,
         title,
         meta,
