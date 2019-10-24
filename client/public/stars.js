@@ -17,19 +17,20 @@ function main() {
   const plane = new THREE.PlaneBufferGeometry(2, 2);
 
   const fragmentShader = `
-#ifdef GL_ES
-precision mediump float;
-#endif
-
 uniform float time;
 uniform vec2 mouse;
 uniform vec2 resolution;
 
 #define M_PI 3.1415926535897932384626433832795
 
-float rand(vec2 co)
+highp float rand(vec2 co)
 {
-  return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+    highp float a = 12.9898;
+    highp float b = 78.233;
+    highp float c = 43758.5453;
+    highp float dt= dot(co.xy ,vec2(a,b));
+    highp float sn= mod(dt,3.14);
+    return fract(sin(sn) * c);
 }
 
 void main()
@@ -44,7 +45,7 @@ vec2 vpos = position;
 
 vec2 pos = floor(1.0 / size * gl_FragCoord.xy);
 
-float color = 0.0;
+float color = 0.2;
 float starValue = rand(pos);
 
 if (rand(gl_FragCoord.xy / resolution.xy) > 0.996)

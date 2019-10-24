@@ -10,8 +10,10 @@
   import SignIn from './SignIn.svelte'
   import { instance } from './utils'
 
+  const outlet = document.getElementById('root')
+
   const client = crayon.create()
-  client.use(svelte.router())
+  client.use(svelte.router(outlet))
 
   client.use(transition.loader())
   client.use(
@@ -46,7 +48,6 @@
 
   client.path('/blog', (req, res) => {
     res.mount(Blog, {
-      target: document.body,
       client,
     })
   })
@@ -54,7 +55,6 @@
   client.path('/blog/:slug', async (req, res) => {
     let { slug } = req.params
     await res.mount(BlogPost, {
-      target: document.body,
       slug,
     })
   })
@@ -64,7 +64,6 @@
       res.redirect('/content')
     } else
       await res.mount(SignIn, {
-        target: document.body,
         client,
       })
   })
