@@ -50,9 +50,6 @@
     width: 80%;
     height: 80%;
   }
-  pre {
-    color: #40eb34;
-  }
   @media screen and (max-width: 576px) {
     h1 {
       font-size: 1.6rem;
