@@ -55,10 +55,10 @@
   <meta name="og:description" content={meta} />
   <meta property="og:title" content={title} />
   <meta property="og:image" content={imageUrl} />
-  <meta property="og:url" content={`https://atropp.dev/${slug}`} />
-  <meta name="twitter:title" content={post.title} />
-  <meta name="twitter:description" content={post.meta} />
-  <meta name="twitter:image" content={post.imageUrl} />
+  <meta property="og:url" content={`https://atropp.dev/blog/${slug}`} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={meta} />
+  <meta name="twitter:image" content={imageUrl} />
 </svelte:head>
 
 <div>
