@@ -55,7 +55,10 @@
   <meta name="og:description" content={meta} />
   <meta property="og:title" content={title} />
   <meta property="og:image" content={imageUrl} />
-  <!-- <meta property="og:url" content={`https://www.forestfounders.org/${slug}`} /> -->
+  <meta property="og:url" content={`https://atropp.dev/${slug}`} />
+  <meta name="twitter:title" content={post.title} />
+  <meta name="twitter:description" content={post.meta} />
+  <meta name="twitter:image" content={post.imageUrl} />
 </svelte:head>
 
 <div>

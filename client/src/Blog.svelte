@@ -42,9 +42,16 @@
   .card .row {
     align-items: center;
   }
+  .col-12 {
+    padding-right: 0;
+    padding-left: 0;
+  }
   img {
     width: 80%;
     height: 80%;
+  }
+  pre {
+    color: #40eb34;
   }
   @media screen and (max-width: 576px) {
     h1 {
@@ -55,6 +62,17 @@
     }
     p {
       font-size: 0.8rem;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    h1 {
+      font-size: 1.4rem;
+    }
+    h2 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.7rem;
     }
   }
 </style>

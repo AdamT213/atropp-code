@@ -14,7 +14,7 @@
     margin-top: 1rem;
   }
   p#about {
-    margin-top: 25vh;
+    margin-top: 10vh;
   }
 </style>
 
