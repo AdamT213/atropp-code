@@ -31,7 +31,7 @@
       ['clean'],
     ]
     var quill = new Quill('#editor', {
-      modules: { toolbar: toolbarOptions },
+      modules: { syntax: true, toolbar: toolbarOptions },
       placeholder: 'New Blog Post',
       theme: 'snow',
     })
