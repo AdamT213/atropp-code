@@ -50,6 +50,11 @@
     width: 80%;
     height: 80%;
   }
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   @media screen and (max-width: 576px) {
     h1 {
       font-size: 1.6rem;
