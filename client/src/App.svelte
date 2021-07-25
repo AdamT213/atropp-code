@@ -1,8 +1,8 @@
 <script>
   import crayon from 'crayon'
   import svelte from 'crayon-router-svelte'
-  import animate from 'crayon-animate'
-  import transition from 'crayon-transition'
+  import animate from 'crayon-router-animate'
+  import transition from 'crayon-router-transition'
   import About from './About.svelte'
   import Blog from './Blog.svelte'
   import BlogPost from './BlogPost.svelte'
