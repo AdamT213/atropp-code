@@ -16,7 +16,7 @@
     "bootstrap": "^4.3.1",
     "crayon": "^4.1.6",
     "crayon-animate": "^2.0.5",
-    "crayon-svelte": "^1.0.10",
+    "crayon-router-svelte": "6.0.0",
     "crayon-transition": "^1.0.9",
     "quill": "^1.3.7",
     "quill-delta-to-html": "^0.10.13",

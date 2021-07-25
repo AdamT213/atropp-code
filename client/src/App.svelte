@@ -1,6 +1,6 @@
 <script>
   import crayon from 'crayon'
-  import svelte from 'crayon-svelte'
+  import svelte from 'crayon-router-svelte'
   import animate from 'crayon-animate'
   import transition from 'crayon-transition'
   import About from './About.svelte'
