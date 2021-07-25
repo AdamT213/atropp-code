@@ -35,37 +35,37 @@
 
   client.path('/', (req, res) => {
     console.log(res)
-    res.redirect('/blog')
+    req.redirect('/blog')
   })
 
   client.path('/about', (req, res) => {
-    res.mount(About)
+    req.mount(About)
   })
 
   client.path('/content', loggedInUser, (req, res) => {
-    if (req.user) res.mount(CMS)
-    else res.redirect('/signin')
+    if (req.user) req.mount(CMS)
+    else req.redirect('/signin')
   })
 
   client.path('/blog', (req, res) => {
     console.log(res)
-    res.mount(Blog, {
+    req.mount(Blog, {
       client,
     })
   })
 
   client.path('/blog/:slug', async (req, res) => {
     let { slug } = req.params
-    await res.mount(BlogPost, {
+    await req.mount(BlogPost, {
       slug,
     })
   })
 
   client.path('/signin', loggedInUser, async (req, res) => {
     if (req.user) {
-      res.redirect('/content')
+      req.redirect('/content')
     } else
-      await res.mount(SignIn, {
+      await req.mount(SignIn, {
         client,
       })
   })
