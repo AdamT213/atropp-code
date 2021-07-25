@@ -34,6 +34,7 @@
   }
 
   client.path('/', (req, res) => {
+    console.log(res)
     res.redirect('/blog')
   })
 
@@ -47,6 +48,7 @@
   })
 
   client.path('/blog', (req, res) => {
+    console.log(res)
     res.mount(Blog, {
       client,
     })
