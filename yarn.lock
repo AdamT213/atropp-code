@@ -435,6 +435,16 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
+crayon-router-svelte@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/crayon-router-svelte/-/crayon-router-svelte-6.0.0.tgz#96df1f22296fb7e5850446bc7fb724e4e8baa553"
+  integrity sha512-l1nCj58nr1k58ut8M7i6py/A+xrCW229USkwzVrG7unLpRYQAJzjqTNv8KZCY36JnBHnDM32+VewllvmQsl3cg==
+
+crayon-router-transition@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/crayon-router-transition/-/crayon-router-transition-6.0.0.tgz#6b81cd30209cc98156ca6f149028dd13a7f105d3"
+  integrity sha512-KB3sICNNDie5cd46Y0GagiUe498+Y0QpDMdoU+s6C8tw8PA7SQfvng47PBru/kLzIFXtR5r78UrIvS6rxczpmQ==
+
 create-error-class@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -1775,9 +1785,9 @@ path-key@^2.0.0, path-key@^2.0.1:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
