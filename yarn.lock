@@ -435,6 +435,16 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
+crayon-router-svelte@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/crayon-router-svelte/-/crayon-router-svelte-6.0.0.tgz#96df1f22296fb7e5850446bc7fb724e4e8baa553"
+  integrity sha512-l1nCj58nr1k58ut8M7i6py/A+xrCW229USkwzVrG7unLpRYQAJzjqTNv8KZCY36JnBHnDM32+VewllvmQsl3cg==
+
+crayon-router-transition@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/crayon-router-transition/-/crayon-router-transition-6.0.0.tgz#6b81cd30209cc98156ca6f149028dd13a7f105d3"
+  integrity sha512-KB3sICNNDie5cd46Y0GagiUe498+Y0QpDMdoU+s6C8tw8PA7SQfvng47PBru/kLzIFXtR5r78UrIvS6rxczpmQ==
+
 create-error-class@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -482,9 +492,9 @@ debug@^3.2.6:
     ms "^2.1.1"
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 deep-extend@^0.6.0:
   version "0.6.0"
